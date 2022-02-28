@@ -1,0 +1,11 @@
+nav {
+    display: flex;
+    justify-content: right;
+    padding: 2rem;
+}
+
+nav p {
+    color: #000;
+    text-decoration: underline;
+    cursor: pointer;
+}
