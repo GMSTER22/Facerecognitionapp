@@ -12,10 +12,7 @@ html {
 
 body {
   font-size: 1.6rem;
-  background: linear-gradient(89deg, #ff5edf 0%, #04c8de 100%);
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; */
+  background: linear-gradient(89deg, #ff5edf 0%, #ff5edf 30%, #04c8de 100%);
     font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -1,5 +1,7 @@
 .logo {
     margin: 2rem;
+    border-radius: 1rem;
+    /* overflow: hidden; */
 }
 
 .Tilt {

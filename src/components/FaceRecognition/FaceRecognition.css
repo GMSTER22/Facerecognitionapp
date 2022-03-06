@@ -1,0 +1,13 @@
+.facerecognition {
+    position: relative;
+    margin: 1rem auto;
+    width: 50rem;
+    height: auto;
+}
+
+.facerecognition .box {
+    position: absolute;
+    box-shadow: 0 0 0 3px #ff0101;
+}
+
+
