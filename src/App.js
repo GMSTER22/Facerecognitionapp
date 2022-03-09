@@ -35,9 +35,9 @@ const particlesOptions = {
     modes: {
       bubble: {
         distance: 400,
-        duration: 2,
+        duration: 200,
         opacity: 0.8,
-        size: 40,
+        size: 4,
       },
       push: {
         quantity: 1,
@@ -50,10 +50,10 @@ const particlesOptions = {
   },
   particles: {
     color: {
-      value: "#000",
+      value: "#fff",
     },
     links: {
-      color: "#000",
+      color: "#fff",
       distance: 150,
       enable: true,
       opacity: 0.5,
@@ -66,8 +66,8 @@ const particlesOptions = {
       direction: "none",
       enable: true,
       outMode: "bounce",
-      // random: false,
-      // speed: 3,
+      random: false,
+      speed: 3,
       straight: false,
     },
     number: {
@@ -99,8 +99,27 @@ class App extends Component {
       imgUrl: "", 
       box: [],
       route: "signin",
-      isSignedIn: false
+      isSignedIn: false,
+      user: {
+        id: "",
+        name: "",
+        email: "",
+        entries: 0,
+        joined: ""
+      }
     }
+  }
+
+  loadUser = (data) => {
+    this.setState({
+      user: {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        entries: data.entries,
+        joined: data.joined
+      }
+    })
   }
 
   calculateFaceLocation = (data) => {
@@ -170,8 +189,21 @@ class App extends Component {
         const res = await fetch(url, requestOptions);
         const result = await res.text();
         const data = await JSON.parse(result, null, 2).outputs[0].data.regions;
+        if (data) {
+          fetch("http://localhost:3000/image", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify({
+              id: this.state.user.id
+            })
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data, "my resp")
+            this.setState(Object.assign(this.state.user, {entries: data.entries}))
+          })
+        }
         this.calculateFaceLocation(data);
-        console.log(this.state.box);
       } catch(error) {
         console.log("error", error);
       }
@@ -193,7 +225,9 @@ class App extends Component {
         { this.state.route === "home" ?
           <div>
             <Logo />
-            <Rank />
+            <Rank
+            name={this.state.user.name}
+            entries={this.state.user.entries} />
             <ImageLinkForm 
               onInputChange={this.onInputChange} 
               onButtonSubmit={this.onButtonSubmit}
@@ -207,9 +241,13 @@ class App extends Component {
           :
           (
             this.state.route === "signin" ?
-            <Signin onRouteChange={this.onRouteChange} />
+            <Signin 
+            onRouteChange={this.onRouteChange}
+            loadUser={this.loadUser} />
             :
-            <Register onRouteChange={this.onRouteChange} />
+            <Register 
+            onRouteChange={this.onRouteChange}
+            loadUser={this.loadUser} />
           )
         }
     </div>

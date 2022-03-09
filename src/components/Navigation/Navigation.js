@@ -11,7 +11,7 @@ function Navigation({onRouteChange, isSignedIn}) {
     }
     return (
         <nav>
-            <p onClick={() => onRouteChange("signin")}>Sign In</p>
+            <p onClick={() => onRouteChange("signin")} style={{marginRight: "15px"}}>Sign In</p>
             <p onClick={() => onRouteChange("register")}>Register</p>
         </nav>
     )
