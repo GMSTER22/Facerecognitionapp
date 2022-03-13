@@ -10,7 +10,7 @@ function FaceRecognition({imgSource, facesLocation}) {
             src={imgSource} 
             alt="submitted face" 
             />
-            {facesLocation.map(faceLocation => {
+            {facesLocation.map((faceLocation, index) => {
                 const faceBoxStyling = {
                     top: `${faceLocation.top}px`,
                     left: `${faceLocation.left}px`,
@@ -18,7 +18,8 @@ function FaceRecognition({imgSource, facesLocation}) {
                     bottom: `${faceLocation.bottom}px`
                 }
                 return (
-                    <div className="box" 
+                    <div className="box"
+                    key={index} 
                     style={faceBoxStyling}>
                         
                     </div>

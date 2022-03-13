@@ -14,6 +14,7 @@ class Register extends Component {
     onInputChange = (event) => {
         const value = event.target.value;
         const type = event.target.type;
+        
 
         if ( type === "email" ) {
             this.setState({ email: value });
@@ -21,7 +22,7 @@ class Register extends Component {
             this.setState({ password: value })
         } else if ( type === "text") {
             this.setState({ name: value })
-        }        
+        }     
     }
 
     onSubmitSignIn = () => {
@@ -36,8 +37,8 @@ class Register extends Component {
         })
         .then(res => res.json())
         .then(user => {
-            if (user) {
-                this.props.loadUser(user)
+            if (user.id) {
+                this.props.loadUser(user);
                 this.props.onRouteChange("home");
             }
         })        
@@ -58,7 +59,7 @@ class Register extends Component {
                                 type="text" 
                                 name="name" 
                                 id="name"
-                                onClick={this.onInputChange} />
+                                onChange={this.onInputChange} />
                             </div>
                             <div className="mt3">
                                 <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
@@ -67,7 +68,7 @@ class Register extends Component {
                                 type="email" 
                                 name="email-address" 
                                 id="email-address"
-                                onClick={this.onInputChange} />
+                                onChange={this.onInputChange} />
                             </div>
                             <div className="mv3">
                                 <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
@@ -75,7 +76,7 @@ class Register extends Component {
                                 className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" 
                                 name="password" 
                                 id="password"
-                                onClick={this.onInputChange} />
+                                onChange={this.onInputChange} />
                             </div>
                         </fieldset>
                         <div className="">

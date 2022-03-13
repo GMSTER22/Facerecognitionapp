@@ -31,12 +31,14 @@ class Signin extends Component {
             })
         })
         .then(res => res.json())
-        .then(data => {     
-
-            if (data.id) {
-                this.props.loadUser(data);       
+        .then(user => {    
+            if (user.id) {
+                this.props.loadUser(user);       
                 this.props.onRouteChange("home");
             } 
+        })
+        .catch(err => {
+            console.log(err);
         })        
     }
 
