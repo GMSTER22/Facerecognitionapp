@@ -26,7 +26,7 @@ class Signin extends Component {
             method: "POST",
             headers: { "Content-Type" : "application/json" },
             body: JSON.stringify({
-                email: this.state.signInEmail,
+                email: this.state.signInEmail.toLocaleLowerCase(),
                 password: this.state.signInPassword
             })
         })
@@ -44,7 +44,7 @@ class Signin extends Component {
 
     render () {
         return (
-            <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">    
+            <article className="br3 ba bg-white dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">    
                 <main className="pa4 black-80">
                     <div className="measure">
                         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">

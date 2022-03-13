@@ -30,7 +30,7 @@ class Register extends Component {
             method: "POST",
             headers: { "Content-Type" : "application/json" },
             body: JSON.stringify({
-                email: this.state.email,
+                email: this.state.email.toLocaleLowerCase(),
                 password: this.state.password,
                 name: this.state.name
             })

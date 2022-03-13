@@ -10,8 +10,6 @@ import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import './App.css';
 
-const clarifaiEndpoint = "https://api.clarifai.com/v2/models/face-detection/versions/6dc7e46bc9124c5c8824be4822abe105/outputs";
-
 
 //settings for react-tsparticles for background animation
 const particlesOptions = {
@@ -41,10 +39,10 @@ const particlesOptions = {
         size: 4,
       },
       push: {
-        quantity: 1,
+        quantity: 3,
       },
       repulse: {
-        distance: 100,
+        distance: 200,
         duration: 0.4,
       },
     },
@@ -55,10 +53,10 @@ const particlesOptions = {
     },
     links: {
       color: "#fff",
-      distance: 80,
+      distance: 200,
       enable: true,
-      opacity: .3,
-      width: 100,
+      opacity: .4,
+      width: 0,
     },
     collisions: {
       enable: true,
@@ -82,12 +80,11 @@ const particlesOptions = {
       value: 0.5,
     },
     shape: {
-      type: "none",
-      // type: "stars",
+      type: "star",
     },
     size: {
       random: true,
-      value: 5,
+      value: 4,
     },
   },
   detectRetina: true,
@@ -163,35 +160,7 @@ class App extends Component {
     this.setState({imgUrl: this.state.input});
     this.setState({input: ""});
 
-    // const raw = JSON.stringify({
-    //   "user_app_id": {
-    //     "user_id": "gaelxoaehons2k",
-    //     "app_id": "d7876ff90a064d7c85606f597b33f89c"
-    //   },
-    //   "inputs": [
-    //     {
-    //       "data": {
-    //         "image": {
-    //           "url": `${this.state.input}`
-    //         }
-    //       }
-    //     }
-    //   ]
-    // });
-    
-    // const requestOptions = {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Authorization': `Key c89051a9cd344243ba0522b9c85c855b`
-    //   },
-    //   body: raw
-    // };
-
     const fetchPositions = () => {
-      // const res = await fetch(url, requestOptions);
-      // const result = await res.text();
-      // const data = await JSON.parse(result, null, 2).outputs[0].data.regions;
       fetch("http://localhost:3000/image", {
         method: "POST",
         headers: { "Content-Type" : "application/json" },
@@ -216,24 +185,9 @@ class App extends Component {
         }
         this.calculateFaceLocation(data);
       });
-      
-      // if (data) {
-      //   fetch("http://localhost:3000/image", {
-      //     method: "PUT",
-      //     headers: { "Content-Type": "application/json"},
-      //     body: JSON.stringify({
-      //       id: this.state.user.id
-      //     })
-      //   })
-      //   .then(res => res.json())
-      //   .then(data => {
-      //     this.setState(Object.assign(this.state.user, {entries: data.entries}))
-      //   })
-      // }
-      // this.calculateFaceLocation(data);
     }
 
-    fetchPositions(clarifaiEndpoint);
+    fetchPositions();
   }
 
   render() {
