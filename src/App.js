@@ -161,7 +161,7 @@ class App extends Component {
     this.setState({input: ""});
 
     const fetchPositions = () => {
-      fetch("http://localhost:3000/image", {
+      fetch("https://face-recognition-api12.herokuapp.com/image", {
         method: "POST",
         headers: { "Content-Type" : "application/json" },
         body: JSON.stringify({
@@ -171,7 +171,7 @@ class App extends Component {
       .then(res => res.json())
       .then(data => {
         if (data) {
-        fetch("http://localhost:3000/image", {
+        fetch("https://face-recognition-api12.herokuapp.com/image", {
           method: "PUT",
           headers: { "Content-Type": "application/json"},
           body: JSON.stringify({
